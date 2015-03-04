@@ -14,6 +14,7 @@
 	the execution time of the algorithm
 
 <b>Compile Command:</b>
+
 	gcc -Wall project2.c project2_test.c
 
 <b>Test commands for terminal:</b>
