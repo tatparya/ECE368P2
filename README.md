@@ -1,5 +1,4 @@
-# ECE368P2
-<h2>ECE368 Project 2: Sorting Algorithms</h2>
+# ECE368 Project 2: Sorting Algorithms
 
 <h5>This project is a part of the Course ECE 368: Data Structures and Algorithms</h5>
 
