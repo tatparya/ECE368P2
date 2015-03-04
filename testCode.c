@@ -56,3 +56,31 @@ void sort( int list[], int n )
 {
 
 }
+
+//  Print array of numbers
+void * printArray( int list[], int n )
+{
+    int i = 0;
+    printf( "Array :\n" );
+    for( i = 0; i < n; i++ )
+    {
+        printf( "%d", list[i] );
+    }
+    printf( "\n" );
+}
+
+//  Function to generate a list of random numbers of n elements
+int * randGenerator( int n )
+{
+    time_t t;
+    srand( ( unsigned ) tiem( &t ) );
+    int * list;
+    list = malloc( n * sizeof( int ) )
+    int i = 0;
+    int num;
+    for( i = 0; i < n; i ++ )
+    {
+        num = rand() % 10 + 1;
+        list[i] = num;
+    }
+}
