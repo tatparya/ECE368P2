@@ -12,7 +12,7 @@
 #include "project2.h"
 
 //  Main function
-int main( )
+int main (int argc, char ** argv)
 {
 
 }
