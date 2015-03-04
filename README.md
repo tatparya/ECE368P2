@@ -2,11 +2,11 @@
 
 <h5>This project is a part of the Course ECE 368: Data Structures and Algorithms</h5>
 
-<b>Objective:</b>
+<b>Objective:</b><br>
 	Sort a given list of integers using
 	an efficient sorting algorithm.
 
-<b>Criteria:</b>
+<b>Criteria:</b><br>
 	The sort algorithm was to be tested
 	against other students and the grades
 	for the project assigned according to
