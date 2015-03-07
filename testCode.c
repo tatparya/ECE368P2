@@ -114,6 +114,7 @@ void sort( int list[], int n )
 
 }
 
+<<<<<<< HEAD
 //  To print an array of length n
 void printArray( int * array, int n, char * comment )
 {
@@ -125,3 +126,32 @@ void printArray( int * array, int n, char * comment )
     }
     printf( "\n" );
 }
+=======
+//  Print array of numbers
+void * printArray( int list[], int n )
+{
+    int i = 0;
+    printf( "Array :\n" );
+    for( i = 0; i < n; i++ )
+    {
+        printf( "%d", list[i] );
+    }
+    printf( "\n" );
+}
+
+//  Function to generate a list of random numbers of n elements
+int * randGenerator( int n )
+{
+    time_t t;
+    srand( ( unsigned ) tiem( &t ) );
+    int * list;
+    list = malloc( n * sizeof( int ) )
+    int i = 0;
+    int num;
+    for( i = 0; i < n; i ++ )
+    {
+        num = rand() % 10 + 1;
+        list[i] = num;
+    }
+}
+>>>>>>> 9f72a96959fe9e1dcee533aaafb50c37cb78b901
