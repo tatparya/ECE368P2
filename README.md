@@ -13,10 +13,11 @@
 	the execution time of the algorithm
 
 <b>Compile Command:</b>
-
+```<bash>
 	gcc -Wall project2.c project2_test.c
-
+```
 <b>Test commands for terminal:</b>
-
+```<bash>
 	gcc -Wall testCode.c
 	time ./a.out {arg}
+```
