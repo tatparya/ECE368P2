@@ -12,12 +12,6 @@
 #include "project2.h"
 
 
-int values[] = { 88, 56, 100, 2, 25 };
-
-int cmpfunc (const void * a, const void * b)
-{
-    return ( *(int*)a - *(int*)b );
-}
 
 //  Main function
 
@@ -25,20 +19,18 @@ int main (int argc, char ** argv)
 {
     int n;
     int num = atoi( argv[1] );
-    printf("Before sorting the list is: \n");
-    for( n = 0 ; n < 5; n++ ) {
-        printf("%d ", values[n]);
-    }
+    int values[] = { 88, 56, 100, 2, 25 };
+
+    printArray( values, 5, "Before Sorting:" );
 
     qsort(values, 5, sizeof(int), cmpfunc);
 
-    printf("\nAfter sorting the list is: \n");
-    for( n = 0 ; n < 5; n++ ) {
-        printf("%d ", values[n]);
-    }
-    printf("\n");
+    printArray( values, 5, "After Sorting:" );
+
+    //  Testing time with inc number of itr
     int i = 0;
     int a = 1;
+
     for( i = 0; i < num; i ++ )
     {
         for( a = 0; a < num; a ++ )
@@ -51,8 +43,85 @@ int main (int argc, char ** argv)
     return(0);
 }
 
+//  Custom qsort function ** Recursive **
+//  1. array
+//  2. size of array
+//  3. size of an element
+//  4. beginning index
+//  5. last index
+void customQSortRec(int *array, int size, int (*cmp)(void*,void*), int begin, int end)
+{
+    if (end > begin)
+    {
+        void *pivot = array + begin;
+        int l = begin + size;
+        int r = end;
+        while(l < r)
+        {
+            if (cmp(array+l,pivot) <= 0)
+            {
+                l += size;
+            } else if ( cmp(array+r, pivot) > 0 )  {
+                r -= size;
+            } else if ( l < r )
+            {
+                swap(array+l, array+r, size);
+            }
+        }
+        l -= size;
+        swap(array+begin, array+l, size);
+        sort(array, size, cmp, begin, l);
+        sort(array, size, cmp, r, end);
+    }
+}
+
+//  Call to rec qsort
+//  1. array
+//  2. number of elements
+//  3. size of an element
+//  4. compare function
+void recQSort(void *array, int nitems, int size, int (*cmp)(void*,void*)) {
+    sort(array, size, cmp, 0, nitems*size);
+}
+
+//  Custom qsort function ** Iterative **
+void customQSortItr( int list[], int n )
+{
+
+}
+
+//  Compares two values
+int cmpfunc (const void * a, const void * b)
+{
+    return ( *(int*)a - *(int*)b );
+}
+
+//  Swap funciton to swap two numbers
+void swap(void *x, void *y, int l)
+{
+    int *a = x, *b = y, c;
+    while(l--)
+    {
+        c = *a;
+        *a++ = *b;
+        *b++ = c;
+    }
+}
+
 //  Main Sort Function
 void sort( int list[], int n )
 {
 
+}
+
+//  To print an array of length n
+void printArray( int * array, int n, char * comment )
+{
+    int i = 0;
+    printf("%s\n", comment );
+    for( i = 0; i < n; i++ )
+    {
+        printf( "%d : %d\n", i + 1, array[i] );
+    }
+    printf( "\n" );
 }
