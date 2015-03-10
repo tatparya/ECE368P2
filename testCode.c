@@ -9,39 +9,9 @@
 **
 ***************************** */
 
-#include "project2.h"
+#include "testCode.h"
 
 
-
-//  Main function
-
-int main (int argc, char ** argv)
-{
-    int n;
-    int num = atoi( argv[1] );
-    int values[] = { 88, 56, 100, 2, 25 };
-
-    printArray( values, 5, "Before Sorting:" );
-
-    qsort(values, 5, sizeof(int), cmpfunc);
-
-    printArray( values, 5, "After Sorting:" );
-
-    //  Testing time with inc number of itr
-    int i = 0;
-    int a = 1;
-
-    for( i = 0; i < num; i ++ )
-    {
-        for( a = 0; a < num; a ++ )
-        {
-
-        }
-    }
-
-    printf( "Num = %d\n", num );
-    return(0);
-}
 
 //  Custom qsort function ** Recursive **
 //  1. array
@@ -70,8 +40,8 @@ void customQSortRec(int *array, int size, int (*cmp)(void*,void*), int begin, in
         }
         l -= size;
         swap(array+begin, array+l, size);
-        sort(array, size, cmp, begin, l);
-        sort(array, size, cmp, r, end);
+        customQSortRec(array, size, cmp, begin, l);
+        customQSortRec(array, size, cmp, r, end);
     }
 }
 
@@ -81,7 +51,7 @@ void customQSortRec(int *array, int size, int (*cmp)(void*,void*), int begin, in
 //  3. size of an element
 //  4. compare function
 void recQSort(void *array, int nitems, int size, int (*cmp)(void*,void*)) {
-    sort(array, size, cmp, 0, nitems*size);
+    customQSortRec(array, size, cmp, 0, nitems*size);
 }
 
 //  Custom qsort function ** Iterative **
@@ -90,11 +60,7 @@ void customQSortItr( int list[], int n )
 
 }
 
-//  Compares two values
-int cmpfunc (const void * a, const void * b)
-{
-    return ( *(int*)a - *(int*)b );
-}
+
 
 //  Swap funciton to swap two numbers
 void swap(void *x, void *y, int l)
@@ -108,10 +74,16 @@ void swap(void *x, void *y, int l)
     }
 }
 
+//  Compares two values
+int cmpfunc (const void * a, const void * b)
+{
+    return ( *(int*)a - *(int*)b );
+}
+
 //  Main Sort Function
 void sort( int list[], int n )
 {
-
+    qsort(list, n, sizeof(int), cmpfunc);
 }
 
 
@@ -127,30 +99,26 @@ void printArray( int * array, int n, char * comment )
     printf( "\n" );
 }
 
-//  Print array of numbers
-void * printArray( int list[], int n )
-{
-    int i = 0;
-    printf( "Array :\n" );
-    for( i = 0; i < n; i++ )
-    {
-        printf( "%d", list[i] );
-    }
-    printf( "\n" );
-}
-
 //  Function to generate a list of random numbers of n elements
 int * randGenerator( int n )
 {
+    //  Randomize
     time_t t;
-    srand( ( unsigned ) tiem( &t ) );
+    srand( ( unsigned ) time( &t ) );
     int * list;
-    list = malloc( n * sizeof( int ) )
+
+    //  Mallo list memory
+    list = malloc( n * sizeof( int ) );
     int i = 0;
     int num;
+
+    //  Generate random integers and put into list
     for( i = 0; i < n; i ++ )
     {
         num = rand() % 10 + 1;
         list[i] = num;
     }
+
+    //  Return list
+    return list;
 }
