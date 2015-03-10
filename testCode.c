@@ -114,7 +114,7 @@ void sort( int list[], int n )
 
 }
 
-<<<<<<< HEAD
+
 //  To print an array of length n
 void printArray( int * array, int n, char * comment )
 {
@@ -126,7 +126,7 @@ void printArray( int * array, int n, char * comment )
     }
     printf( "\n" );
 }
-=======
+
 //  Print array of numbers
 void * printArray( int list[], int n )
 {
@@ -154,4 +154,3 @@ int * randGenerator( int n )
         list[i] = num;
     }
 }
->>>>>>> 9f72a96959fe9e1dcee533aaafb50c37cb78b901
