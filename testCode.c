@@ -19,33 +19,25 @@
 //  3. size of an element
 //  4. beginning index
 //  5. last index
-void customQSortRec(int *array, int size, int (*cmp)(void*,void*), int begin, int end)
+void customQSortRec( int * arr, int beg, int end )
 {
-    printf( "Size = %d", size );
-    printArray( array, ( begin - end ), "\nMid sort:" );
-    if (end > begin)
+    if (end > beg + 1)
     {
-        void *pivot = array + begin;
-        int l = begin + size;
-        int r = end;
-        while(l < r)
+        int piv = arr[beg], l = beg + 1, r = end;
+        printf( "Pivot = %d\n", piv );
+        while (l < r)
         {
-            if (cmp(array+l,pivot) <= 0)
-            {
-                l += size;
-            } else if ( cmp(array+r, pivot) > 0 )  {
-                r -= size;
-            } else if ( l < r )
-            {
-                swap(array+l, array+r, size);
-            }
+            if (arr[l] <= piv)
+                l++;
+            else
+                swap(&arr[l], &arr[--r]);
         }
-        l -= size;
 
-        swap(array+begin, array+l, size);
-        printArray( array, size, "\nAfter swap:\n" );
-        customQSortRec(array, size, cmp, begin, l);
-        customQSortRec(array, size, cmp, r, end);
+        printArray( arr, (end - beg),"Array being sorted: " );
+
+        swap(&arr[--l], &arr[beg]);
+        customQSortRec(arr, beg, l-1);
+        customQSortRec(arr, r, end);
     }
 }
 
@@ -54,10 +46,11 @@ void customQSortRec(int *array, int size, int (*cmp)(void*,void*), int begin, in
 //  2. number of elements
 //  3. size of an element
 //  4. compare function
-void recQSort(void *array, int nitems, int size, int (*cmp)(void*,void*)) {
+void recQSort(int *array, int nitems, int size, int (*cmp)(int*,int*))
+{
     printf( "Going into qsort\n" );
     printf( "Size = %d\nn items = %d\n", size, nitems );
-    customQSortRec(array, size, cmp, 0, nitems*size);
+    customQSortRec(array, 0, nitems );
 }
 
 //  Custom qsort function ** Iterative **
@@ -69,22 +62,17 @@ void customQSortItr( int list[], int n )
 
 
 //  Swap funciton to swap two numbers
-void swap(void *x, void *y, int l)
+void swap( int *x, int *y )
 {
-    int *a = x, *b = y, c;
-    printf( "Before \na = %d, b =  %d\n", *a,*b );
-    while(l--)
-    {
-        c = *a;
-        *a++ = *b;
-        *b++ = c;
-    }
+    int t = *x;
+    *x = *y;
+    *y = t;
 }
 
 //  Compares two values
-int cmpfunc ( void * a,  void * b )
+int cmpfunc ( int * a,  int * b )
 {
-    return ( *(int*)a - *(int*)b );
+    return ( *a - *b );
 }
 
 //  Main Sort Function
@@ -126,7 +114,7 @@ int * randGenerator( int n )
     //  Generate random integers and put into list
     for( i = 0; i < n; i ++ )
     {
-        num = rand() % 10 + 1;
+        num = rand() % 50 + 1;
         list[i] = num;
     }
 

@@ -2,9 +2,9 @@
 #include <stdlib.h>
 
 void sort( int list[], int n );
-void customQSortRec(int *array, int size, int (*cmp)(void*,void*), int begin, int end );
+void customQSortRec( int arr[], int beg, int end );
 void customQSortItr( int list[], int n );
-void swap(void *x, void *y, int l );
-int cmpfunc ( void * a, void * b );
+void swap( int *x, int *y );
+int cmpfunc ( int * a,  int * b );
 void printArray( int * array, int n, char * comment );
 int * randGenerator( int n );
