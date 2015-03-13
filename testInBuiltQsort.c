@@ -30,7 +30,7 @@ int main (int argc, char ** argv)
         for( ; l < 100000000; l++ )
             for( ; z < 100000000; z++ )
             {
-                m = z/10;
+                m = z%10;
             }
     */
     //  Print generated list
