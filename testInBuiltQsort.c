@@ -1,5 +1,5 @@
 /*
-**      File to test the random generator in the testcode
+**      File to test the c library qsort in the testcode
 */
 
 #include <stdlib.h>

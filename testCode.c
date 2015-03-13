@@ -21,6 +21,8 @@
 //  5. last index
 void customQSortRec(int *array, int size, int (*cmp)(void*,void*), int begin, int end)
 {
+    printf( "Size = %d", size );
+    printArray( array, ( begin - end ), "\nMid sort:" );
     if (end > begin)
     {
         void *pivot = array + begin;
@@ -39,7 +41,9 @@ void customQSortRec(int *array, int size, int (*cmp)(void*,void*), int begin, in
             }
         }
         l -= size;
+
         swap(array+begin, array+l, size);
+        printArray( array, size, "\nAfter swap:\n" );
         customQSortRec(array, size, cmp, begin, l);
         customQSortRec(array, size, cmp, r, end);
     }
@@ -51,6 +55,8 @@ void customQSortRec(int *array, int size, int (*cmp)(void*,void*), int begin, in
 //  3. size of an element
 //  4. compare function
 void recQSort(void *array, int nitems, int size, int (*cmp)(void*,void*)) {
+    printf( "Going into qsort\n" );
+    printf( "Size = %d\nn items = %d\n", size, nitems );
     customQSortRec(array, size, cmp, 0, nitems*size);
 }
 
@@ -66,6 +72,7 @@ void customQSortItr( int list[], int n )
 void swap(void *x, void *y, int l)
 {
     int *a = x, *b = y, c;
+    printf( "Before \na = %d, b =  %d\n", *a,*b );
     while(l--)
     {
         c = *a;
@@ -75,7 +82,7 @@ void swap(void *x, void *y, int l)
 }
 
 //  Compares two values
-int cmpfunc (const void * a, const void * b)
+int cmpfunc ( void * a,  void * b )
 {
     return ( *(int*)a - *(int*)b );
 }
@@ -83,7 +90,11 @@ int cmpfunc (const void * a, const void * b)
 //  Main Sort Function
 void sort( int list[], int n )
 {
-    qsort(list, n, sizeof(int), cmpfunc);
+    //  Call to C-library qsort
+    //qsort(list, n, sizeof(int), cmpfunc);
+
+    //  Call to recQSort
+    recQSort( list, n, sizeof( int ), cmpfunc );
 }
 
 
