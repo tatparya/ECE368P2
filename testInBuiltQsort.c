@@ -5,32 +5,40 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+int cmpfunc (const void * a, const void * b)
+{
+    return ( *(int*)a - *(int*)b );
+}
+
 //  Main function
 int main (int argc, char ** argv)
 {
     int n;
-    int values[] = { 88, 56, 100, 2, 25 };
+    int * list;
 
-    printArray( values, 5, "Before Sorting:" );
+    //  UI
+    printf( "Enter the number of integers in list: " );
+    //scanf( "%d", &n );
 
-    sort( values, 5 );
+    n = 30000;
 
-    printArray( values, 5, "After Sorting:" );
+    //  Call to rand generator
+    list = randGenerator( n );
 
-    //  Testing time with inc number of itr
-    int i = 0;
-    int a = 1;
-    int num = 0;
-    num = 100;
+    /*int k = 0, l = 0, z = 0, m;
+    for( ; k < 100000000; k++ )
+        for( ; l < 100000000; l++ )
+            for( ; z < 100000000; z++ )
+            {
+                m = z/10;
+            }
+    */
+    //  Print generated list
+    //printArray( list, n, "\nRandomly generated array;" );
 
-    for( i = 0; i < num; i ++ )
-    {
-        for( a = 0; a < num; a ++ )
-        {
+    qsort( list, n, sizeof( int ), cmpfunc );
 
-        }
-    }
+    //printArray( list, n, "\nAfter Sorting:" );
 
-    printf( "Num = %d\n", num );
-    return(0);
+return(0);
 }

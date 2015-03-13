@@ -23,8 +23,10 @@ void customQSortRec( int * arr, int beg, int end )
 {
     if (end > beg + 1)
     {
-        int piv = arr[beg], l = beg + 1, r = end;
-        printf( "Pivot = %d\n", piv );
+        int piv = arr[beg];
+        int l = beg + 1;
+        int r = end;
+        //printf( "Pivot = %d\n", piv );
         while (l < r)
         {
             if (arr[l] <= piv)
@@ -33,7 +35,7 @@ void customQSortRec( int * arr, int beg, int end )
                 swap(&arr[l], &arr[--r]);
         }
 
-        printArray( arr, (end - beg),"Array being sorted: " );
+        //printArray( arr, (end - beg),"Array being sorted: " );
 
         swap(&arr[--l], &arr[beg]);
         customQSortRec(arr, beg, l-1);
@@ -46,10 +48,9 @@ void customQSortRec( int * arr, int beg, int end )
 //  2. number of elements
 //  3. size of an element
 //  4. compare function
-void recQSort(int *array, int nitems, int size, int (*cmp)(int*,int*))
+void recQSort( int *array, int nitems )
 {
     printf( "Going into qsort\n" );
-    printf( "Size = %d\nn items = %d\n", size, nitems );
     customQSortRec(array, 0, nitems );
 }
 
@@ -59,20 +60,12 @@ void customQSortItr( int list[], int n )
 
 }
 
-
-
 //  Swap funciton to swap two numbers
 void swap( int *x, int *y )
 {
     int t = *x;
     *x = *y;
     *y = t;
-}
-
-//  Compares two values
-int cmpfunc ( int * a,  int * b )
-{
-    return ( *a - *b );
 }
 
 //  Main Sort Function
@@ -82,7 +75,6 @@ void sort( int list[], int n )
     //qsort(list, n, sizeof(int), cmpfunc);
 
     //  Call to recQSort
-    recQSort( list, n, sizeof( int ), cmpfunc );
 }
 
 
@@ -114,7 +106,7 @@ int * randGenerator( int n )
     //  Generate random integers and put into list
     for( i = 0; i < n; i ++ )
     {
-        num = rand() % 50 + 1;
+        num = rand() % 1000 + 1;
         list[i] = num;
     }
 

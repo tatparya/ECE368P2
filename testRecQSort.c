@@ -13,17 +13,27 @@ int main (int argc, char ** argv)
 
     //  UI
     printf( "Enter the number of integers in list: " );
-    scanf( "%d", &n );
+    //scanf( "%d", &n );
+
+    n = 30000;
 
     //  Call to rand generator
     list = randGenerator( n );
 
+    /*int k = 0, l = 0, z = 0, m;
+    for( ; k < 100000000; k++ )
+        for( ; l < 100000000; l++ )
+            for( ; z < 100000000; z++ )
+            {
+                m = z/10;
+            }
+*/
     //  Print generated list
-    printArray( list, n, "\nRandomly generated array;" );
+    //printArray( list, n, "\nRandomly generated array;" );
 
-    sort( list, n );
+    recQSort( list, n );
 
-    printArray( list, n, "\nAfter Sorting:" );
+    //printArray( list, n, "\nAfter Sorting:" );
 
     return(0);
 }
