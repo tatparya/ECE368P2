@@ -15,10 +15,8 @@
 
 //  Custom qsort function ** Recursive **
 //  1. array
-//  2. size of array
-//  3. size of an element
-//  4. beginning index
-//  5. last index
+//  2. beginning index
+//  3. last index
 void customQSortRec( int * arr, int beg, int end )
 {
     if (end > beg + 1)
@@ -46,18 +44,59 @@ void customQSortRec( int * arr, int beg, int end )
 //  Call to rec qsort
 //  1. array
 //  2. number of elements
-//  3. size of an element
-//  4. compare function
 void recQSort( int *array, int nitems )
 {
     printf( "Going into qsort\n" );
     customQSortRec(array, 0, nitems );
 }
 
-//  Custom qsort function ** Iterative **
-void customQSortItr( int list[], int n )
-{
 
+//  Thread data struct declaration
+//  1. beggining index
+//  2. end index
+//  3. array to sort
+typedef struct ThreadData
+{
+    int beg;
+    int end;
+    int * array;
+}   data;
+
+//  Create Thread function
+void createThreadDataStruct( struct ThreadData * threadStructPtr, int beg, int end, int * array )
+{
+    threadStructPtr -> beg = beg;
+    threadStructPtr -> end = end;
+    threadStructPtr -> array = array;
+}
+
+//  Custom qsort function ** Iterative **
+void customQSortPar( int * arr, int beg, int end )
+{
+    if (end > beg + 1)
+    {
+        int piv = arr[beg];
+        int l = beg + 1;
+        int r = end;
+        //printf( "Pivot = %d\n", piv );
+        while (l < r)
+        {
+            if (arr[l] <= piv)
+            {
+                l++;
+            }
+            else
+            {
+                swap(&arr[l], &arr[--r]);
+            }
+        }
+
+        //printArray( arr, (end - beg),"Array being sorted: " );
+
+        swap(&arr[--l], &arr[beg]);
+        customQSortRec(arr, beg, l-1);
+        customQSortRec(arr, r, end);
+    }
 }
 
 //  Swap funciton to swap two numbers
