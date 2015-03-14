@@ -147,7 +147,10 @@ int * randGenerator( int n )
     {
         num = rand() % 1000 + 1;
         list[i] = num;
+        //printf( "%d : %d\n", i + 1, list[i] );
     }
+
+    printArray( list, n, "\nRandomly generated array;" );
 
     //  Return list
     return list;

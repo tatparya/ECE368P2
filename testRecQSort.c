@@ -15,7 +15,7 @@ int main (int argc, char ** argv)
     printf( "Enter the number of integers in list: " );
     //scanf( "%d", &n );
 
-    n = 30000;
+    n = 30;
 
     //  Call to rand generator
     list = randGenerator( n );
@@ -31,7 +31,7 @@ int main (int argc, char ** argv)
     //  Print generated list
     //printArray( list, n, "\nRandomly generated array;" );
 
-    recQSort( list, n );
+    //recQSort( list, n );
 
     //printArray( list, n, "\nAfter Sorting:" );
 
