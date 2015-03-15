@@ -11,7 +11,98 @@
 
 #include "testCode.h"
 
+//  Find largest number in array
+int findLargest( int * array, int n )
+{
+    int i = 0;
+    int max = 0;
 
+    for( i = 0; i < n; i++ )
+    {
+        //  Check if negative
+        if( array[i] > 0 )
+        {
+            if( array[i] > max )
+            {
+                max = array[i] * -1;
+            }
+        }
+        //  Positive
+        else
+        {
+            if( array[i] > max )
+            {
+                max = array[i];
+            }
+        }
+
+    }
+
+    return max;
+}
+
+
+//  Regular radix sort
+//
+void radixSort( int * array, int n )
+{
+    //  Find largest element
+    int i = 0;
+    int max = 0;
+    int sigDig = 1;
+    const int base = 10;
+    int * b = (int *) malloc( n * sizeof( int ) );
+
+    //  Find the lasrgest number in the list
+    max = findLargest( array, n );
+
+    //  Sort by each radix
+    while( max / sigDig != 0 )
+    {
+        //  Initiallize bucket to 0
+        int bucket[10] = { 0 };
+
+        //  Count num keys for each bucket
+        for( i = 0; i < n; i ++ )
+        {
+            bucket[ (array[i] / sigDig) % base ]++;
+        }
+
+        //printArray( bucket, 10, "Bucket" );
+
+        //  Add the count of the previous buckets
+        //  to aquire the indices after the end of
+        //  each bucket location in the array
+        for( i = 1; i < n; i++ )
+        {
+            bucket[i] += bucket[i - 1];
+        }
+
+        //printArray( bucket, 10, "Bucket after summing" );
+
+        //  Starting at the end of the list,
+        //  get index correspoinding to a[i]'s key
+        //  Decremend it, and use it to place a[i]
+        //  into the array
+        for( i = n - 1; i >= 0; i -- )
+        {
+            b[--bucket[(array[i] / sigDig) % base]] = array[i];
+        }
+
+        //printArray( bucket, 10, "Bucket" );
+
+        //  Copy array b to a
+        for( i = 0; i < n; i++ )
+        {
+            array[i] = b[i];
+        }
+
+        //printArray( array, n, "Main array after a pass" );
+
+        //  Incremend significant digit
+        sigDig *= base;
+    }
+}
 
 //  Custom qsort function ** Recursive **
 //  1. array
@@ -99,14 +190,6 @@ void customQSortPar( int * arr, int beg, int end )
     }
 }
 
-//  Swap funciton to swap two numbers
-void swap( int *x, int *y )
-{
-    int t = *x;
-    *x = *y;
-    *y = t;
-}
-
 //  Main Sort Function
 void sort( int list[], int n )
 {
@@ -116,6 +199,13 @@ void sort( int list[], int n )
     //  Call to recQSort
 }
 
+//  Swap funciton to swap two numbers
+void swap( int *x, int *y )
+{
+    int t = *x;
+    *x = *y;
+    *y = t;
+}
 
 //  To print an array of length n
 void printArray( int * array, int n, char * comment )
@@ -149,8 +239,6 @@ int * randGenerator( int n )
         list[i] = num;
         //printf( "%d : %d\n", i + 1, list[i] );
     }
-
-    printArray( list, n, "\nRandomly generated array;" );
 
     //  Return list
     return list;
