@@ -20,7 +20,7 @@ int main (int argc, char ** argv)
     printf( "Enter the number of integers in list: " );
     //scanf( "%d", &n );
 
-    n = 1000000;
+    n = 10000;
 
     //  Call to rand generator
     list = randGenerator( n );

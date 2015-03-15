@@ -52,7 +52,7 @@ void radixSort( int * array, int n )
     int sigDig = 1;
     const int base = 10;
     int * b = (int *) malloc( n * sizeof( int ) );
-
+    
     //  Find the lasrgest number in the list
     max = findLargest( array, n );
 
@@ -65,10 +65,10 @@ void radixSort( int * array, int n )
         //  Count num keys for each bucket
         for( i = 0; i < n; i ++ )
         {
-            bucket[ (array[i] / sigDig) % base ]++;
+            bucket[ ( array[i] / sigDig ) % base ]++;
         }
 
-        //printArray( bucket, 10, "Bucket" );
+        printArray( bucket, 10, "Bucket" );
 
         //  Add the count of the previous buckets
         //  to aquire the indices after the end of
@@ -78,7 +78,7 @@ void radixSort( int * array, int n )
             bucket[i] += bucket[i - 1];
         }
 
-        //printArray( bucket, 10, "Bucket after summing" );
+        printArray( bucket, 10, "Bucket after summing" );
 
         //  Starting at the end of the list,
         //  get index correspoinding to a[i]'s key
@@ -86,6 +86,7 @@ void radixSort( int * array, int n )
         //  into the array
         for( i = n - 1; i >= 0; i -- )
         {
+
             b[--bucket[(array[i] / sigDig) % base]] = array[i];
         }
 
@@ -97,12 +98,12 @@ void radixSort( int * array, int n )
             array[i] = b[i];
         }
 
-        //printArray( array, n, "Main array after a pass" );
+        printArray( array, n, "Main array after pass" );
 
         //  Incremend significant digit
         sigDig *= base;
     }
-}
+}   
 
 //  Custom qsort function ** Recursive **
 //  1. array
