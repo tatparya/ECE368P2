@@ -1,5 +1,5 @@
 /*
-**      File to test the recursive qsort in the testcode
+**      File to test the radix sort in the testcode
 */
 
 #include <stdlib.h>
