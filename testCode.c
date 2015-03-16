@@ -52,7 +52,7 @@ void radixSort( int * array, int n )
     int sigDig = 1;
     const int base = 10;
     int * b = (int *) malloc( n * sizeof( int ) );
-    
+
     //  Find the lasrgest number in the list
     max = findLargest( array, n );
 
@@ -68,17 +68,17 @@ void radixSort( int * array, int n )
             bucket[ ( array[i] / sigDig ) % base ]++;
         }
 
-        printArray( bucket, 10, "Bucket" );
+        //printArray( bucket, 10, "Bucket" );
 
         //  Add the count of the previous buckets
         //  to aquire the indices after the end of
         //  each bucket location in the array
-        for( i = 1; i < n; i++ )
+        for( i = 1; i < 10; i++ )
         {
             bucket[i] += bucket[i - 1];
         }
 
-        printArray( bucket, 10, "Bucket after summing" );
+        //printArray( bucket, 10, "Bucket after summing" );
 
         //  Starting at the end of the list,
         //  get index correspoinding to a[i]'s key
@@ -98,12 +98,15 @@ void radixSort( int * array, int n )
             array[i] = b[i];
         }
 
-        printArray( array, n, "Main array after pass" );
+        //printArray( array, n, "Main array after pass" );
 
         //  Incremend significant digit
         sigDig *= base;
     }
-}   
+
+    //  Free allocated memory
+    free( b );
+}
 
 //  Custom qsort function ** Recursive **
 //  1. array

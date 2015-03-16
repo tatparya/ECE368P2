@@ -12,19 +12,19 @@ int main (int argc, char ** argv)
     int * list;
 
     //  UI
-    printf( "Enter the number of integers in list: " );
+    //printf( "Enter the number of integers in list: " );
     //scanf( "%d", &n );
 
-    n = 100000;
+    n = 10000;
 
     //  Call to rand generator
     list = randGenerator( n );
 
     //  Print generated list
-    printf( "Testing recursive qsort\n");
+    //printf( "Testing recursive qsort\n");
     //printArray( list, n, "\nRandomly generated array:\n" );
 
-    recQSort( list, n );
+    sort( list, n );
 
     //printArray( list, n, "\nAfter Sorting:\n" );
 
