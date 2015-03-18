@@ -4,7 +4,13 @@
 
 <b>Objective:</b><br>
 	Sort a given list of integers using
-	an efficient sorting algorithm.
+	an efficient sorting algorithm
+	
+<b>Implementation:</b><br>
+	Implementation of quick sort modified with 
+	insertion sort to optimize quick sort's 
+	worst case time complexity
+	
 
 <b>Criteria:</b><br>
 	The sort algorithm was to be tested
